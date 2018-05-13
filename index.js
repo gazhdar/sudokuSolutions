@@ -1,17 +1,17 @@
 var express = require('express')
 var app = express()
 
-app.get('/', function (req, res) {
+app.get('/sudoku/board', function (req, res) {
   var emptyBoard = generateEmptyBoard();
-  
-  res.send(
-    generateSolution(emptyBoard)
-
-  )
+  var solvedBoard = generateSolution(emptyBoard)
+  var flatSolvedBoard = solvedBoard.map(function(cell){
+    return cell.value;
+  });
+  res.send(flatSolvedBoard);
 })
 
-app.listen(8000, function () {
-  console.log('Example app listening on port 8000!')
+app.listen(8080, function () {
+  console.log('Sudoku app listening on port 8080!')
 })
 
 /**
@@ -93,10 +93,62 @@ function shuffle(a) {
 function generateSolution(board){
     
     var  i=0;
-    while (i<=80){
-        //if works i++ if not i--
-        board[i].value=board[i].available[0]
-        i++;
+    while (i>=0 && i<=80){
+        //find row neighbours
+        var rowFinder = board.filter(function(cell){
+            return cell.row == board[i].row;
+        })
+        //find column neighbours
+        var columnFinder = board.filter(function(cell){
+            return cell.column == board[i].column;
+        })
+        //find block neighbours
+        var blockFinder = board.filter(function(cell){
+            return cell.block == board[i].block;
+        })       
+        
+        for (var j=0; j<board[i].available.length; j++){
+            //this is the number we gonna test
+            var valuetoTest = board[i].available[j];
+            //find values in the row that match
+            var duplicateinRow = rowFinder.filter(function(cell){
+                return cell.value == valuetoTest
+            })
+            //find values in the column that match
+            var duplicateinColumn = columnFinder.filter(function(cell){
+                return cell.value == valuetoTest
+            })
+            //find values in the block that match
+            var duplicateinBlock = blockFinder.filter(function(cell){
+                return cell.value == valuetoTest
+            })
+        
+            //if valuetoTest is not in rowFinder & columnFinder & blockFinder
+            if (duplicateinRow.length === 0 && duplicateinColumn.length === 0 && duplicateinBlock.length === 0){
+                board[i].value=valuetoTest;
+                board[i].available.splice(0, j+1);
+                break;
+            }
+
+        }
+        
+        if (board[i].value === null){
+            //if can not find will reset removed numbers and move back 1 cell
+          board[i].available =shuffle([1,2,3,4,5,6,7,8,9]);
+          board[i-1].value = null;
+          i--;
+        } else {
+            //move forward 1 cell
+            i++;
+        }
+       
     }
+   //map objs to ints
     return board;
+}
+
+exports._test = {
+    generateEmptyBoard: generateEmptyBoard,
+    generateSolution: generateSolution,
+    shuffle: shuffle
 }

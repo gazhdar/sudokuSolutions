@@ -4,7 +4,8 @@
   "description": "Sudoku solution generator",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm install && npm test && node index.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,7 @@
   "author": "Azhdar Gasimzade",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mocha": "^5.1.1"
   }
 }
