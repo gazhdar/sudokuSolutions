@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import spinner from './spinner.gif';
 import './App.css';
 
@@ -54,7 +53,7 @@ class App extends Component {
   render() {
     return (
       <div className="App loading" id="App">
-        <div className="loader"><img src={spinner}></img></div>
+        <div className="loader"><img alt="" src={spinner}></img></div>
         <header className="App-header">
           <h1 className="App-title"><span>SUDOKU</span> SOLUTIONS</h1>
         </header>

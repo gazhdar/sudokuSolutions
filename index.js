@@ -12,7 +12,7 @@ app.get('/sudoku/board', function (req, res) {
 })
 
 app.listen(port, function () {
-  console.log('Sudoku app listening on port '+ port)
+  console.log('Server listening on port '+ port)
 })
 
 /**

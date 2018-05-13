@@ -4,10 +4,10 @@
   "description": "Sudoku solution generator",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "client": "cd client && npm run start",
-    "server": "nodemon index.js",
-    "build": "concurrently --kill-others-on-fail \"npm install\" \"npm test\" \"npm run server\" \"npm run client\""
+    "test": "mocha --exit",
+    "client": "cd client && npm install && npm run start",
+    "server": "npm install && npm test && node index.js",
+    "build": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
