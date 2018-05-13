@@ -1,5 +1,6 @@
 var express = require('express')
 var app = express()
+const port = process.env.PORT || 8080;
 
 app.get('/sudoku/board', function (req, res) {
   var emptyBoard = generateEmptyBoard();
@@ -10,8 +11,8 @@ app.get('/sudoku/board', function (req, res) {
   res.send(flatSolvedBoard);
 })
 
-app.listen(8080, function () {
-  console.log('Sudoku app listening on port 8080!')
+app.listen(port, function () {
+  console.log('Sudoku app listening on port '+ port)
 })
 
 /**

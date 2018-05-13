@@ -1,0 +1,193 @@
+.App {
+  text-align: center;
+  height: -webkit-fill-available;
+}
+.App.dark{
+  background-color: #3e3e3e;
+}
+.App.loading{
+  opacity: .5;
+}
+.App .loader{
+  display: none;
+  position: absolute;
+  top:40%;
+  left:45%;
+}
+.App .loader img {
+  width: 100px;
+  
+}
+.App.loading .loader{
+  display: block;
+}
+
+.App.loading #buttonContainer{
+  display: none;
+}
+.App.loading #sudokuTable{
+  display: none;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #f8f8f8;
+  padding: 20px;
+  color: black;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+}
+.App.dark .App-header{
+  background-color: #222;
+  color:white;
+}
+.App-header span{
+  color:#2cbcff;
+  font-size:1.5em;
+  padding-right: 3px;
+}
+
+.App.dark .App-header span {
+  color:red;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+#sudokuTable td{
+  border:1px solid black;
+  padding:5px 10px;
+}
+#sudokuTable{
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+#sudokuTable table{
+  border-collapse: collapse;
+  align-self: center; 
+  border:5px solid #2cbcff; 
+}
+#sudokuTable table tr td:nth-child(3){
+  border-right:5px solid #2cbcff;
+} 
+#sudokuTable table tr td:nth-child(6){
+  border-right:5px solid #2cbcff;
+}
+#sudokuTable table tr:nth-child(3){
+  border-bottom:5px solid #2cbcff;
+} 
+#sudokuTable table tr:nth-child(6){
+  border-bottom:5px solid #2cbcff;
+}  
+
+.App.dark #sudokuTable td{
+  border-color: white;
+}
+.App.dark #sudokuTable table{
+  border:5px solid red;
+  color:white; 
+}
+.App.dark #sudokuTable table tr td:nth-child(3){
+  border-right:5px solid red;
+} 
+.App.dark #sudokuTable table tr td:nth-child(6){
+  border-right:5px solid red;
+}
+.App.dark #sudokuTable table tr:nth-child(3){
+  border-bottom:5px solid red;
+} 
+.App.dark #sudokuTable table tr:nth-child(6){
+  border-bottom:5px solid red;
+} 
+
+#reloadButton{
+  border-radius: 34px;
+  border-style: none !important;
+  padding: 10px;
+  position: relative;
+  display: inline-block;
+  height: 34px;
+  color: white;
+  background-color: #2cbcff;
+}
+.App.dark #reloadButton{
+  background-color: red;
+}
+/*switch button*/
+#buttonContainer{
+  padding-top: 30px;
+  display: inline-flex;
+}
+#buttonContainer p {
+  margin-top: 5px;
+  font-size: .9em;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin:0 10px 0 40px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2cbcff;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: red;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px red;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
